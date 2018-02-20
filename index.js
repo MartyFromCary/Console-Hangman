@@ -6,12 +6,14 @@ const randomWord = require("./hangmanWords");
 var hangmanWord, maxTry, tries, alreadyGuessed, lastCorrectGuesses;
 
 
-async function guessLetter() {
-    console.log(hangmanWord.value());
+function guessLetter() {
+    console.log("\n" + hangmanWord.value());
 
-    inquirer.prompt([{ type: "input", message: "guess a letter", name: "letter" }])
-        .then(rsp => {
-
+    inquirer.prompt(
+        [{ type: "input", message: "guess a letter", name: "letter" }]
+    )
+        .then(function (rsp) {
+            const letter = rsp.letter;
             console.log(`letter: ${letter}`);
             if (!letter.match(/^[a-z]$/i)) {
                 console.log("a single alphabetic letter please, try again")
@@ -27,7 +29,7 @@ async function guessLetter() {
             const correctGuesses = hangmanWord.guess(letter);
             console.log(hangmanWord.value());
             if (correctGuesses == hangmanWord.length) {
-                console.log("You've got it right! Next word");
+                console.log("You've got it right!");
                 return;
             }
             if (correctGuesses > lastCorrectGuesses) {
@@ -51,12 +53,9 @@ async function guessLetter() {
         });
 }
 
-//while (true) 
-{
-    hangmanWord = new Word(randomWord());
-    maxTry = hangmanWord.length * 2;
-    tries = 0;
-    alreadyGuessed = {};
-    lastCorrectGuesses = 0;
-    guessLetter();
-}
+hangmanWord = new Word(randomWord());
+maxTry = hangmanWord.length * 2;
+tries = 0;
+alreadyGuessed = {};
+lastCorrectGuesses = 0;
+guessLetter();
