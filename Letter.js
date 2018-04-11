@@ -1,7 +1,6 @@
 "use strict";
 
 class Letter {
-    
   constructor(letter) {
     this.letter = letter;
     this.guessed = false;

@@ -63,5 +63,5 @@ function guessLetter(depth) {
     });
 }
 
-console.log("Movie Hangman!")
+console.log("Movie Hangman!");
 guessLetter(0);
